@@ -7,8 +7,6 @@ from transformers import AutoModelForSequenceClassification
 import torch
 from datetime import datetime
 
-
-
 folder = "csvf/"
 files = []
 updated_files=[]
@@ -18,23 +16,17 @@ tokenizer  = AutoTokenizer.from_pretrained(import_model)
 model =AutoModelForSequenceClassification.from_pretrained(import_model)
 
 def find_score(x):
-
     token = tokenizer.encode(x,return_tensors ="pt")
     result = model(token)
     score = int(torch.argmax(result.logits)) + 1
-    
     return int(score)
 
-
 def update_score(x,y):
-
     good_score=["good_at_score"]
     good=[]
-
     do_score = ["do_better_score"]
     do=[]
     ignore = ["",'',"Nan","N/A",'N/a','n/a',"NA",".",",","?"]
-
 
     with open(x,"r") as file:
         read = csv.reader(file)
@@ -62,28 +54,19 @@ def update_score(x,y):
                     csv_writer.writerow(row)
                     count = count + 1 
 
-
-
 def duplicate_csv(x):
         with open(os.path.join(folder, "x"+x),"x") as file:
                 with open(x, 'w', newline='') as write_obj:
                         csv_reader = reader(file)
                         csv_writer = writer(write_obj)
 
-
-
-
-for filename in os.listdir(folder):
-        
-        
+for filename in os.listdir(folder):        
         if filename.startswith("x") == False:
             if filename not in files:    
                     duplicate_csv(filename)
                     if filename not in files:
                         files.append(filename)    
-
                     time.sleep(5)
-
 
 for i in files:            
             k = folder+str(i)
@@ -91,7 +74,6 @@ for i in files:
             print(k,j)
             update_score(k,j)
             updated_files.append(j)   
-
 
 print("Files duplicated are:",files)                    
 print("Updated files are:",updated_files)

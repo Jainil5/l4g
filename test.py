@@ -1,7 +1,7 @@
 import pandas as pd 
 
 
-df = pd.read_csv("ag.csv")
+df = pd.read_csv("ag2.csv")
 
 
-print(dfs)
+print(df.columns)
