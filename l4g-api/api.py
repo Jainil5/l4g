@@ -3,7 +3,7 @@ import requests
 from flask import Flask
 from flask_restful import Api,Resource
 
-openai.api_key = "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"
+openai.api_key = ""
 
 app = Flask(__name__)
 api = Api(app)
