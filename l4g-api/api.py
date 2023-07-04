@@ -3,7 +3,7 @@ import requests
 from flask import Flask
 from flask_restful import Api,Resource
 
-openai.api_key = ""
+openai.api_key = "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"
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,7 +26,6 @@ def ask(input):
     messages.append({"role":"assistant" , "content":"reply"})
     print("\n"+reply+"\n")
     return reply
-
 
 class Update(Resource):
     def post(self,data):
